@@ -13,22 +13,24 @@ app.set("view engine", "ejs")
 
 var campgroundSchema = new mongoose.Schema({
     name: String,
-    image: String
+    image: String,
+    description: String
 })
 
 var Campground = mongoose.model("Campground", campgroundSchema);
 
-// Campground.create(
-//     {
-//         name: "Granite Hill",
-//         image: "https://images.unsplash.com/photo-1525811902-f2342640856e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=1a7383ad093ffea99d373681b9974056&auto=format&fit=crop&w=1502&q=80"}, function(err, campground){
-//             if(err){
-//                 console.log(err);
-//             }else{
-//                 console.log("new campground: ");
-//                 console.log(campground)
-//             }
-//         });
+Campground.create(
+    {
+        name: "Granite Hill",
+        image: "https://images.unsplash.com/photo-1525811902-f2342640856e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=1a7383ad093ffea99d373681b9974056&auto=format&fit=crop&w=1502&q=80",
+        description: "A huge granite hill. No bathrooms, no water, beautiful granite."}, function(err, campground){
+            if(err){
+                console.log(err);
+            }else{
+                console.log("new campground: ");
+                console.log(campground)
+            }
+        });
 
 
 app.get("/", function(req, res){
@@ -64,6 +66,15 @@ app.post("/campgrounds", function(req, res){
 
 app.get("/campgrounds/new", function(req, res){
     res.render("new.ejs")
+
+});
+
+//SHOW -- displays more info about a specific campground
+
+app.get("/campgrounds/:id", function(req, res){
+
+    //display campground with corresponding id
+    res.send("the will be the show page");
 
 });
 
